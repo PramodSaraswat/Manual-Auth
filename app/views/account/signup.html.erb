@@ -1,0 +1,64 @@
+<div class="col col-sm-6 my-3 mx-auto border mt-3">
+	<div class="m-sm-4">
+		<div class="text-center mt-4">
+            <h1 class="h2">Sign Up</h1>
+            <p class="lead">
+                Please Sign Up to continue
+            </p>
+		
+        </div>
+		<%= form_with model: @user, local: true do |form| %>
+			<% if @new_user %>
+				<% @new_user.errors.full_messages.each do |message| %>
+				<div class="alert alert-warning alert-dismissible fade show" role="alert">
+					<%= message %>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					</div>
+				<% end %>
+			<% end %>
+		
+			<div class="form-group">
+				<label>First Name</label>
+				<%= form.text_field :first_name , :class => "form-control"%>
+			</div>
+        	<div class="form-group">
+				<label>Last Name</label>
+				<%= form.text_field :last_name , :class => "form-control"%>
+			</div>
+			<div class="form-group">
+				<label>Email</label>
+				<%= form.text_field :email , :class => "form-control"%>
+			</div>
+			<div class="form-group">
+				<label>Phone No</label>
+				<%= form.number_field :mobile , :class => "form-control"%>
+			</div>
+			<div class="form-group">
+				<label>Date Of Birth</label><br>
+				<%= form.date_select :date_of_birth, :class => "form-control w-100 border" %>
+			</div>
+			<div class="form-group">
+				<label>Password</label>
+				<%= form.password_field :hashed_password , :class => "form-control"%>
+			</div>
+			<div class="form-group">
+				<label>Confirm Password</label>
+				<%= form.password_field :password , :class => "form-control"%>
+			</div>
+			<div class="mt-2 mb-3">
+				<%= form.submit "Sign Up", :class => "btn btn-primary px-4"%>
+			</div>
+            <small style="font-size:15px;">
+            	Have an Account?
+                <a href="<%= account_login_path %>">Sign In</a>
+            </small><br>
+            <small style="font-size:15px;">
+                <a href="<%= password_forget_password_path %>">Forgot Password?</a>
+            </small>
+
+
+		<% end %>
+	</div>
+</div>
